@@ -1,14 +1,24 @@
 {
-  "name": "he-web-utils",
+  "name": "he-utils",
   "version": "1.0.0",
   "description": "a javascript utils repository",
   "main": "index.js",
   "scripts": {
-    "test": "no"
+    "test": "\"echo no test script\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/he-web369/utils-function.git"
   },
   "keywords": [
-    "javascript utils"
+    "javascript",
+    "utils",
+    "function"
   ],
   "author": "he-web369",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/he-web369/utils-function/issues"
+  },
+  "homepage": "https://github.com/he-web369/utils-function#readme"
 }

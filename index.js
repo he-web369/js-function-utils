@@ -6,12 +6,16 @@ const obj = {
         h: function fun() {
             return 2
         },
-        g: [0, 2]
+        g: [{ i: 5 }, 2]
     },
     e:'788'
 }
-
-exports.deepClone = (obj) => {
+/**
+ * 
+ * @param {需拷贝对象} obj 
+ * @returns 新对象
+ */
+const deepClone = (obj) => {
     let final = {}
     let tempMap = new Map()
     for (const key in obj) {
@@ -19,7 +23,6 @@ exports.deepClone = (obj) => {
             tempMap.set(key,obj[key])
         }
     }
-
     tempMap.forEach((value, key) => {
         if (key.includes('.')) {
             let arr = key.split('.')
@@ -39,6 +42,13 @@ exports.deepClone = (obj) => {
             } else if (typeof value === 'function') {
                 tempObj[lastKey] = new Function('return ' + value.toString()).call(tempObj)
                 tempObj[lastKey].name = value.name
+            } else if (value instanceof Array) {
+                tempObj[lastKey] = value.map(item => {
+                    if (typeof item === 'object' && item !== null)return deepClone(item)
+                    else if (typeof item === 'function') {
+                       return  new Function('return ' + item.toString()).call()
+                    }else return item
+                })
             }
             else tempObj[lastKey] = value
         } else if (typeof value === 'object' && value !== null && !(value instanceof Array)) {
@@ -48,11 +58,29 @@ exports.deepClone = (obj) => {
                 }
             }
             final[key] = {}
-        } else if (typeof value === 'function') {
+        } else if (value instanceof Array) {
+            final[key] = deepClone(value)
+        }
+        else if (typeof value === 'function') {
             final[key] = new Function('return ' + value.toString()).call(final)
             final[key].name = value.name
+        }
+        else if (value instanceof Array) {
+            final[key] = value.map(item => {
+                if (typeof item === 'object' && item !== null)return deepClone(item)
+                else if (typeof item === 'function') {
+                   return  new Function('return ' + item.toString()).call()
+                }else return item
+            })
         }
         else final[key] = value
     })
     return final
+}
+// const newObj = deepClone(obj)
+// obj.b.g[0] = 2
+// console.log(obj.b.g[0] , newObj.b.g)
+
+module.exports = {
+    deepClone
 }

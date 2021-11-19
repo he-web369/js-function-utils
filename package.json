@@ -1,0 +1,14 @@
+{
+  "name": "he-web-utils",
+  "version": "1.0.0",
+  "description": "a javascript utils repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "no"
+  },
+  "keywords": [
+    "javascript utils"
+  ],
+  "author": "he-web369",
+  "license": "ISC"
+}

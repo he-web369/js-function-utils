@@ -81,6 +81,7 @@ const deepClone = (obj) => {
 // obj.b.g[0] = 2
 // console.log(obj.b.g[0] , newObj.b.g)
 
-module.exports = {
+const utils = {
     deepClone
 }
+module.exports = utils

@@ -11,5 +11,9 @@
     utils.deepClone(args)
 ## 方法列表
 ### 1.deepClone(对象深拷贝)：
-    params: Object object
-
+    params: obj:object
+### 2.fillSudoku(填充残缺数独)：
+    params: board:Array<Array<string>>
+### 3.solveNQueens(解决n皇后问题)：
+    params: n:number
+    

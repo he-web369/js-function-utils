@@ -280,10 +280,38 @@ const solveNQueens = n => {
     return resA
 }
 //测试
-// console.log(solveNQueens(6)) 
+// console.log(solveNQueens(6))
+/***********************************/
+/**
+ * 数组所有的不重复的排列
+ * @param {*} nums 数组
+ * @returns 数组所有的不重复的排列的集合
+ */
+const permuteUnique = nums => {
+    if (nums.length === 1) return [[nums[0]]]
+    if (nums.length === 2 && nums[0] !== nums[1]) return [[nums[0], nums[1]], [nums[1], nums[0]]]
+    else if (nums.length === 2) return [[nums[0], nums[1]]]
+    let arr = []
+    for (let a = 0; a < nums.length; ++a){
+        if (a !== 0 && nums.slice(0, a).find(i => i === nums[a]) !== undefined) {
+            continue
+        }
+        if (a !== 0) {
+            let temp = nums[a]
+            nums[a] = nums[0]
+            nums[0] = temp
+        }
+        let tempArr = permuteUnique(nums.slice(1))
+        for (let b = 0; b < tempArr.length; ++b){
+            arr.push([nums[0], ...tempArr[b]])
+        }
+    }
+    return arr
+}
 /***********************************/
 
 const utils = {
-    deepClone, fillSudoku, solveNQueens
+    deepClone, fillSudoku, solveNQueens, permuteUnique
 }
+
 module.exports = utils

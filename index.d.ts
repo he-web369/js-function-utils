@@ -2,7 +2,7 @@
  * @Author: hsl
  * @Descripttion: 声明文件
  * @Date: 2021-11-19 16:23:44
- * @LastEditTime: 2022-02-22 12:29:23
+ * @LastEditTime: 2022-04-02 10:01:01
  */
 
 /**
@@ -21,4 +21,10 @@ declare function fillSudoku(board: Array<Array<string>>): void
  */
 declare function solveNQueens(n: number): Array<Array<string>>
 
-export { deepClone, fillSudoku, solveNQueens }
+/**
+ * 数组所有的不重复的排列
+ * @param nums 数组
+ */
+declare function permuteUnique(nums: Array<any>): Array<Array<any>>
+
+export { deepClone, fillSudoku, solveNQueens, permuteUnique }
